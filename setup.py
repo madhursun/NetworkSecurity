@@ -11,7 +11,7 @@ def get_requirements() -> List[str]:
                 if requirement and requirement!='-e .':
                     requirement_lst.append(requirement)
     except FileNotFoundError:
-        print(f"Error: {file_path} not found.")
+        print(f"Error: not found.")
 
     return requirement_lst
 
