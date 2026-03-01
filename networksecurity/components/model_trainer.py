@@ -21,6 +21,14 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier
 import mlflow
 
+import dagshub
+dagshub.init(repo_owner='madhursun', repo_name='NetworkSecurity', mlflow=True)
+
+# import mlflow
+# with mlflow.start_run():
+#   mlflow.log_param('parameter name', 'value')
+#   mlflow.log_metric('metric name', 1)
+
 
 
 class ModelTrainer:
@@ -118,7 +126,7 @@ class ModelTrainer:
 
       network_model=NetworkModel(preprocessor=preprocessor,model=best_model,)
 
-      save_object(file_path=self.model_trainer_config.trained_model_file_path,obj=NetworkModel)
+      save_object('final_models/model.pkl',best_model)
 
       model_trainer_artifact = ModelTrainerArtifact(
         trained_model_file_path=self.model_trainer_config.trained_model_file_path,

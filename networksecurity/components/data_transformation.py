@@ -15,7 +15,7 @@ from networksecurity.utils.main_utils.utils import save_numpy_array_data,save_ob
 from networksecurity.entity.config_entity import DataTransformationConfig
 
 
-class DataTranformation:
+class DataTransformation:
 
   def __init__(self,data_validation_artifact:DataValidationArtifact,data_transformation_config:DataTransformationConfig):
     try:
@@ -48,10 +48,10 @@ class DataTranformation:
     logging.info("Entered initiate_data_transformation method")
 
     try:
-        train_df = DataTranformation.read_data(
+        train_df = DataTransformation.read_data(
             file_path=self.data_validation_artifact.valid_train_file_path
         )
-        test_df = DataTranformation.read_data(
+        test_df = DataTransformation.read_data(
             file_path=self.data_validation_artifact.valid_test_file_path
         )
 
@@ -94,6 +94,8 @@ class DataTranformation:
             self.data_transformation_config.transformed_object_file_path,
             preprocessor_object
         )
+
+        save_object('final_models/preprocessor.pkl',preprocessor)
 
         return DataTransformationArtifact(
             transformed_object_file_path=self.data_transformation_config.transformed_object_file_path,
